@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(244, 234, 222);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  input[type=text] {
+    width: 85%;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+  }
+
+  button {
+    background-color: #1a73e8;
+    color: white;
+    padding: 8px;
+    border: none;
+    width: 93%;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    background: #f3f3f3;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  li button {
+    width: auto;
+    background-color: red;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>ToDo App</h1>
+
+  <input type="text" id="i_task" placeholder="Add a task">
+  <button onclick="addTask()">Add</button>
+
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+  function addTask() {
+    let input = document.getElementById("i_task");
+    let task = input.value.trim();
+
+    if (task === "") {
+      alert("Enter a task!");
+      return;
+    }
+
+    let li = document.createElement("li");
+    li.innerHTML = `
+      ${task}
+      <button onclick="deleteItem(this)">Delete</button>
+    `;
+
+    document.getElementById("taskList").appendChild(li);
+    input.value = "";
+  }
+
+  function deleteItem(btn) {
+    btn.parentElement.remove();
+  }
+</script>
+
+</body>
+</html>
